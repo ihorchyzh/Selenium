@@ -1,4 +1,4 @@
-package com.thomascook.pages;
+package com.ihorchyzh.thomascook.pages;
 
 import com.ihorchyzh.core.WebDriverTestBase;
 import org.openqa.selenium.By;

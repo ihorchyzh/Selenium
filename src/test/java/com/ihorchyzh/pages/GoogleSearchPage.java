@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by ihorchyzh on 3/23/17.
  */
-public class GoogleSearchTest extends WebDriverTestBase {
+public class GoogleSearchPage extends WebDriverTestBase {
 
     @Test
     public void searchTest() {

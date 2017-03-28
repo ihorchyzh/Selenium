@@ -1,8 +1,7 @@
-package com.thomascook.pages;
+package com.ihorchyzh.thomascook.pages;
 
 import com.ihorchyzh.core.WebDriverTestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -20,8 +19,7 @@ public class MainPageLanguagesTest extends WebDriverTestBase {
         driver.get(URL);
         WebElement languageBar = driver.findElement(By.className("sprite-flags-belgium"));
         languageBar.click();
-        String browserTabs = driver.getWindowHandle();
-        driver.switchTo().window(browserTabs[1]);
+
         assertEquals(driver.getCurrentUrl(), "https://www.thomascook.be/");
     }
 
