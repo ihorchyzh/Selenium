@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class T73601DefaultSearch extends WebDriverTestBase {
 
     private static final String URL = "https://www.thomascook.com";
-    private static final String BUTTON_ID = "SearchbarForm-submitBtn";
+    private static final String SEARCH_BUTTON_ID = "SearchbarForm-submitBtn";
     private static final String HOLIDAY_TOTAL_QUANTITY_ID = "test-holiday-total";
     private static final String PAGINATION_BAR_ID = "paginationSearchResultsPanel";
     private static final String FACETS_BLOCK_ID = "search-filters";
@@ -22,7 +22,7 @@ public class T73601DefaultSearch extends WebDriverTestBase {
     public void preparation() {
         HomePage homePage = new HomePage(driver);
         homePage.openUrl(URL);
-        homePage.clickOnButtonById(BUTTON_ID);
+        homePage.clickOnButtonById(SEARCH_BUTTON_ID);
         searchResultPage = new SearchResultPage(driver);
     }
 

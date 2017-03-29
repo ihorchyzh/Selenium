@@ -11,4 +11,15 @@ public class SearchResultPage extends PageObjectModel {
         super(driver);
     }
 
+    public int fetchSearchResultQuantity(String input) {
+        char[] chars = input.toCharArray();
+        String stringNumber = "";
+        for (char ch : chars) {
+            if (Character.isDigit(ch)) {
+                stringNumber += ch;
+            }
+        }
+        return Integer.parseInt(stringNumber);
+    }
+
 }

@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,8 +18,20 @@ public abstract class WebDriverTestBase {
 
     @BeforeClass
     public void setUp() {
-//        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver/geckodriver");
-        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver\\geckodriver.exe");
+
+        String currentDir = System.getProperty("user.dir");
+        String currentOS = System.getProperty("os.name");
+        String unixStyle = "/src/main/resources/geckodriver/geckodriver";
+        String windowsStyle = "src\\main\\resources\\geckodriver\\geckodriver.exe";
+        File file;
+        if (currentOS.equals("Windows")) {
+            file = new File(currentDir, windowsStyle);
+        } else {
+            file = new File(currentDir, unixStyle);
+        }
+
+        System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
+
         // Init browser
         driver = new FirefoxDriver();
         // Max window
@@ -28,7 +41,7 @@ public abstract class WebDriverTestBase {
 
     @AfterClass
     public void tearDown() {
-        driver.quit();              //    driver.quit(); browser
+//        driver.quit();              //    driver.quit(); browser
     }                               //    driver.close(); tab
 
 }
