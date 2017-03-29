@@ -1,6 +1,7 @@
 package com.ihorchyzh.core;
 
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -19,12 +20,13 @@ public abstract class WebDriverTestBase {
     @BeforeClass
     public void setUp() {
 
+        //TODO
         String currentDir = System.getProperty("user.dir");
         String currentOS = System.getProperty("os.name");
         String unixStyle = "/src/main/resources/geckodriver/geckodriver";
         String windowsStyle = "src\\main\\resources\\geckodriver\\geckodriver.exe";
         File file;
-        if (currentOS.equals("Mac OS X")) {
+        if (currentOS.equals("Mac OS X") || currentOS.equals("Linux")) {
             file = new File(currentDir, unixStyle);
         } else {
             file = new File(currentDir, windowsStyle);

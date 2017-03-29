@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
  */
 public class T73586SearchAccordingToSearchCriteria extends WebDriverTestBase {
 
+    //TODO
     private static final String URL = "https://www.thomascook.com";
     private static final String AIR_PLANE_BUTTON_XPATH = ".//*[@id='SearchbarForm-originContainer']/div/div/div/i";
     private static final String ALL_LONDON_XPATH = ".//*[@id='PopularTooltip--airports']/div[2]/div/div[1]/div[1]/label";
@@ -42,9 +43,11 @@ public class T73586SearchAccordingToSearchCriteria extends WebDriverTestBase {
         searchResultPage.clickOnButtonById(SEARCH_BUTTON_ID);
         String tmpStr = searchResultPage.searchElementById(RESULTS_QUANTITY_ID).getText();
         System.out.println(tmpStr);
+        //TODO
         Assert.assertNotNull(tmpStr);
         int tmpInt = searchResultPage.fetchSearchResultQuantity(tmpStr);
         System.out.println(tmpInt);
+        //TODO
         Assert.assertTrue(tmpInt != 0);
     }
 
