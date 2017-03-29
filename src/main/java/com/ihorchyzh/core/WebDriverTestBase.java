@@ -24,10 +24,10 @@ public abstract class WebDriverTestBase {
         String unixStyle = "/src/main/resources/geckodriver/geckodriver";
         String windowsStyle = "src\\main\\resources\\geckodriver\\geckodriver.exe";
         File file;
-        if (currentOS.equals("Windows")) {
-            file = new File(currentDir, windowsStyle);
-        } else {
+        if (currentOS.equals("Mac OS X")) {
             file = new File(currentDir, unixStyle);
+        } else {
+            file = new File(currentDir, windowsStyle);
         }
 
         System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
