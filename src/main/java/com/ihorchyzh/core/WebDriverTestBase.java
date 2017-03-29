@@ -17,7 +17,8 @@ public abstract class WebDriverTestBase {
 
     @BeforeClass
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver/geckodriver");
+//        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver\\geckodriver.exe");
         // Init browser
         driver = new FirefoxDriver();
         // Max window
