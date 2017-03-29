@@ -15,7 +15,7 @@ public class PageObjectModel {
         this.driver = driver;
     }
 
-    public void openUrl(String url){
+    public void openUrl(String url) {
         driver.get(url);
     }
 
@@ -24,12 +24,22 @@ public class PageObjectModel {
         button.click();
     }
 
-    public WebElement searchElementById(String id){
+    public void clickOnButtonByClassName(String className) {
+        WebElement button = driver.findElement(By.className(className));
+        button.click();
+    }
+
+    public void clickOnButtonByXPath(String xPath) {
+        WebElement button = driver.findElement(By.xpath(xPath));
+        button.click();
+    }
+
+    public WebElement searchElementById(String id) {
         WebElement element = driver.findElement(By.id(id));
         return element;
     }
 
-    public WebElement searchElementByClass(String className){
+    public WebElement searchElementByClass(String className) {
         WebElement element = driver.findElement(By.className(className));
         return element;
     }
