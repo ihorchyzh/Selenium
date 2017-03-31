@@ -1,5 +1,6 @@
-package com.ihorchyzh.google;
+package com.ihorchyzh.googlepageobject;
 
+import com.ihorchyzh.utils.WebDriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,11 +10,12 @@ import org.openqa.selenium.WebElement;
  */
 public class AbstractPage {
 
+    protected WebDriverUtils webDriverUtils;
     protected WebDriver driver;
-
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
+        webDriverUtils = new WebDriverUtils(driver);
     }
 
     public void sendSearchData(String search) {

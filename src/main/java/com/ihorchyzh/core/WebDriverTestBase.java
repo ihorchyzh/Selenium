@@ -1,7 +1,6 @@
 package com.ihorchyzh.core;
 
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -20,30 +19,33 @@ public abstract class WebDriverTestBase {
     @BeforeClass
     public void setUp() {
 
-        //TODO
-        String currentDir = System.getProperty("user.dir");
-        String currentOS = System.getProperty("os.name");
-        String unixStyle = "/src/main/resources/geckodriver/geckodriver";
-        String windowsStyle = "src\\main\\resources\\geckodriver\\geckodriver.exe";
-        File file;
-        if (currentOS.equals("Mac OS X") || currentOS.equals("Linux")) {
-            file = new File(currentDir, unixStyle);
-        } else {
-            file = new File(currentDir, windowsStyle);
-        }
+//        //TODO
+//        String currentDir = System.getProperty("user.dir");
+//        String currentOS = System.getProperty("os.name");
+//        String unixStyle = "/src/main/resources/geckodriver/geckodriver";
+//        String windowsStyle = "src\\main\\resources\\geckodriver\\geckodriver.exe";
+//        File file;
+//        if (currentOS.equals("Mac OS X") || currentOS.equals("Linux")) {
+//            file = new File(currentDir, unixStyle);
+//        } else {
+//            file = new File(currentDir, windowsStyle);
+//        }
 
-        System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
+        System.setProperty("webdriver.gecko.driver",
+                WebDriverTestBase.class.getClassLoader().getResource("geckodriver/geckodriver").getPath());
 
         // Init browser
         driver = new FirefoxDriver();
         // Max window
         driver.manage().window().maximize();
+        driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @AfterClass
     public void tearDown() {
-//        driver.quit();              //    driver.quit(); browser
+        driver.quit();              //    driver.quit(); browser
     }                               //    driver.close(); tab
 
 }

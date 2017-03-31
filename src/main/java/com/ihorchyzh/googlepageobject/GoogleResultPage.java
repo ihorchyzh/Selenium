@@ -1,4 +1,4 @@
-package com.ihorchyzh.google;
+package com.ihorchyzh.googlepageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

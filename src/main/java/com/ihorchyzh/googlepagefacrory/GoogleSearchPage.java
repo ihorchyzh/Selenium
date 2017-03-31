@@ -1,4 +1,4 @@
-package com.ihorchyzh.google;
+package com.ihorchyzh.googlepagefacrory;
 
 import org.openqa.selenium.WebDriver;
 
