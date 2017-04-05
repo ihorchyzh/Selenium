@@ -11,7 +11,7 @@ public class WebDriverUtils {
 
     private WebDriverWait wait;
 
-    public WebDriverUtils(WebDriver driver){
+    public WebDriverUtils(WebDriver driver) {
         wait = new WebDriverWait(driver, 40);
     }
 
