@@ -3,9 +3,11 @@ package com.ihorchyzh.core;
 import com.ihorchyzh.utils.PropertiesCache;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.os.WindowsUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeSuite;
@@ -47,19 +49,24 @@ public abstract class WebDriverTestBase {
     }
 
     private void initializeWebDriver() {
-        if (isBrowserSetUpFor(BrowsersName.CHROME.name(), BROWSER)) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--disable-extensions");
-            driver = new ChromeDriver();
-            desiredCapabilities.setBrowserName(BrowsersName.CHROME.name());
-        } else if (isBrowserSetUpFor(BrowsersName.FIREFOX.name(), BROWSER)) {
-            driver = new FirefoxDriver();
-            desiredCapabilities.setBrowserName(BrowsersName.FIREFOX.name());
+        try {
+            if (isBrowserSetUpFor(BrowsersName.CHROME.name(), BROWSER)) {
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-extensions");
+                driver = new ChromeDriver();
+                desiredCapabilities.setBrowserName(BrowsersName.CHROME.name());
+            } else if (isBrowserSetUpFor(BrowsersName.FIREFOX.name(), BROWSER)) {
+                driver = new FirefoxDriver();
+                desiredCapabilities.setBrowserName(BrowsersName.FIREFOX.name());
+            }
+            driver.manage().window().maximize();
+            driver.manage().timeouts().setScriptTimeout(Integer.valueOf(getProperty(SCRIPT_TIMEOUT)), TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(getProperty(LOAD_TIMEOUT)), TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(Integer.valueOf(getProperty(IMPLICIT_WAIT)), TimeUnit.SECONDS);
+        } catch (WebDriverException e) {
+            System.out.println(e.getMessage());
+            WindowsUtils.killByName(desiredCapabilities.getBrowserName() + "driver" + (isWindows() ? ".exe" : ""));
         }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().setScriptTimeout(Integer.valueOf(getProperty(SCRIPT_TIMEOUT)), TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(getProperty(LOAD_TIMEOUT)), TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(Integer.valueOf(getProperty(IMPLICIT_WAIT)), TimeUnit.SECONDS);
     }
 
     @AfterClass
@@ -76,7 +83,8 @@ public abstract class WebDriverTestBase {
     }
 
     private boolean isUnix() {
-        return OS.contains("nix") || OS.contains("nux") || OS.contains("aix");
+        System.out.println(OS.toLowerCase());
+        return OS.contains("nix") || OS.contains("nux") || OS.contains("aix") || OS.contains("mac");
     }
 
     private String getProperty(String key) {
