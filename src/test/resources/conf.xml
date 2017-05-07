@@ -1,0 +1,22 @@
+<suite name="Parallel Tests" verbose="1" thread-count="4" parallel="tests">
+	<tests>
+	<test name="Mac + Chrome Test">
+	  		<parameters>
+				<parameter name="platform" value="mac" />
+		  		<parameter name="browser" value="safari" />
+	  		</parameters>
+	     	<classes>
+	      		<class name="com.ihorchyzh.grid.GoogleSearchTest" />
+	    	</classes>
+	  	</test>
+		<!--<test name="iOS + Chrome Test">-->
+			<!--<parameters>-->
+				<!--<parameter name="platform" value="ios" />-->
+				<!--<parameter name="browser" value="chrome" />-->
+			<!--</parameters>-->
+			<!--<classes>-->
+				<!--<class name="com.compot.login.LoginPageTest" />-->
+			<!--</classes>-->
+		<!--</test>-->
+	</tests>
+</suite>
