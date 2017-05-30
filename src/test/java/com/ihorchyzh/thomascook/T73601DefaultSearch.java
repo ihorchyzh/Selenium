@@ -1,8 +1,12 @@
 package com.ihorchyzh.thomascook;
 
 import com.ihorchyzh.core.WebDriverTestBase;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.lang.invoke.MethodHandles;
 
 /**
  * Created by ihorchyzh on 3/28/17.
